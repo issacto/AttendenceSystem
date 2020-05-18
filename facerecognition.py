@@ -15,8 +15,8 @@ from csv import writer
 
 class faceRecognition():
     '''class for facial recognition starts here'''
-    #camera opened and initialize a name for the file
     def takePic(self):
+        #take photo for attendee
         camera = cv2.VideoCapture(0)
         return_value, image = camera.read()
         self.image = image
@@ -28,6 +28,7 @@ class faceRecognition():
         return image2
         
     def realizeWho(self):
+        #realize who the person got taken is from file Members_photos
         try:
             directory = "/Users/issac/Documents/python/Attendence_Machine/Members_Photos"
             for file in os.listdir(directory):
@@ -39,6 +40,9 @@ class faceRecognition():
                     biden_encoding = face_recognition.face_encodings(known_image)[0]
                     unknown_encoding = face_recognition.face_encodings(unknown_image)[0]
                     results = face_recognition.compare_faces([biden_encoding], unknown_encoding)
+
+                    '''reseults is found in this stage and do the relevant procedures acc to the result'''
+
                     if results[0] == True:
                         file = open("AttendenceRecords/Attendence.csv")
                         reader = csv.reader(file)
@@ -46,10 +50,11 @@ class faceRecognition():
                         name = 'opencv'+str(nextLines)+'.png'
                         memberName = filename.split(".")
                         self.memberName = memberName[0]
+                        #wrtie the file into PhotosTaken file
                         path = "/Users/issac/Documents/python/Attendence_Machine/PhotosTaken"
                         cv2.imwrite(os.path.join(path, name), self.image)
 
-
+                        #record the member into the csv along with the date the pic's taken
                         with open('AttendenceRecords/Attendence.csv', 'a+', newline='') as write_obj:
                             csv_writer = writer(write_obj)
                             csv_writer.writerow([date.today(),self.memberName])
@@ -62,6 +67,7 @@ class faceRecognition():
         
 
 class gui():
+    ''' class for GUI starts here'''
     signedUp = 0
     def __init__(self):
         #create window
@@ -97,16 +103,17 @@ class gui():
         checkButton = tkinter.Button(window, text = "Check", command = lambda: self.calculateButton())
         checkButton.pack()
         checkButton.place(x = 500,y = 550)
-
         #run
         window.mainloop()
     
     def helloCallBack(self):
+        '''subsequent action when press button is printed'''
         x = faceRecognition()
         pictureDisplayed = x.takePic()
         self.panel.configure(image=pictureDisplayed)
         self.panel.image = pictureDisplayed
         y=x.realizeWho()
+        #change the label on the top of the gui acc to the result of who the guy is
         if y == 1:
             self.signedUp += 1
             self.textDisplayed.set("Hi "+x.memberName+"!"+" You are logged in!")
@@ -119,6 +126,7 @@ class gui():
         y = guiInsideGui()
    
 class guiInsideGui():
+    '''class for the pop up gui starts here '''
     def __init__(self):
         self.window = tkinter.Tk()
         self.window.geometry("200x200")
@@ -154,6 +162,7 @@ class guiInsideGui():
         self.window.destroy()
 
     def calculateAttendence(self):
+        '''calculate how many people are signed up for that day'''
         with open('AttendenceRecords/Attendence.csv') as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=',')
             peopleAttended = []
@@ -170,6 +179,7 @@ class guiInsideGui():
         return peopleAttended
 
 if __name__ == "__main__":
+    '''program runs here'''
     x =gui()
 
         

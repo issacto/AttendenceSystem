@@ -172,6 +172,8 @@ class guiInsideGui():
                         for member in peopleAttended:
                             if member != row[1]:
                                 peopleAttended.append(row[1])
+                            else:
+                                break
                     else:
                         peopleAttended.append(row[1])
 

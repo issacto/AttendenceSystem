@@ -15,9 +15,7 @@ import dlib
 
 | First Header  | Second Header |
 | ------------- | ------------- |
-| ![]<img src="https://github.com/issacto/Attendence-System/blob/master/Images/Menu.png" width="300">
- |
-![]<img src="https://github.com/issacto/Attendence-System/blob/master/Images/Members%20taken.png" width="300"> |
+|<img src="https://github.com/issacto/Attendence-System/blob/master/Images/Menu.png" width="300">|<img src="https://github.com/issacto/Attendence-System/blob/master/Images/Members%20taken.png" width="300"> |
 | 
 ![]<img src="https://github.com/issacto/Attendence-System/blob/master/Images/Noone%20spotted.png" width="300">
 |

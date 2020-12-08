@@ -12,9 +12,11 @@ This program imported the facial recognition package "dlib"
 ```python
 import dlib
 ```
-| | |
+
+| Main Page | Recognized the Mamber|
 | ------------- | ------------- |
 |<img src="https://github.com/issacto/Attendence-System/blob/master/Images/Menu.png" width="300">|<img src="https://github.com/issacto/Attendence-System/blob/master/Images/Members%20taken.png" width="300"> |
+| Cannot Recognize the Member | Check the attendee|
 |<img src="https://github.com/issacto/Attendence-System/blob/master/Images/Noone%20spotted.png" width="300">|<img src="https://github.com/issacto/Attendence-System/blob/master/Images/people%20signed%20in.png" width="300">|
 
 
